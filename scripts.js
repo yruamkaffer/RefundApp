@@ -72,6 +72,7 @@ function expenseAdd(newExpense) {
 
         expenseList.append(expenseItem)
 
+        formClear()
         updateTotals()
 
     } catch (error) {
@@ -111,4 +112,21 @@ function updateTotals() {
     } catch (error) {
         alert('Não foi possível atualizar os totais.')
     }
+}
+
+expenseList.addEventListener("click", function (event) {
+    if (event.target.classList.contains("remove-icon")) {
+        const item = event.target.closest(".expense")
+        item.remove()
+    }
+
+    updateTotals()
+})
+
+function formClear() {
+    amount.value = ""
+    expense.value = ""
+    category.value = ""
+
+    expense.focus()
 }
